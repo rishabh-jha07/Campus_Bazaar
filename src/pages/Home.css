@@ -1,0 +1,238 @@
+.bg-light {
+  background-color: var(--secondary-color);
+}
+
+.border-top {
+  border-top: 1px solid var(--border-color);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-48 {
+  margin-top: 48px;
+}
+
+.ml-2 {
+  margin-left: 8px;
+}
+
+/* Category grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  background-color: var(--primary-color);
+  transition: var(--transition);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s ease;
+  opacity: 0.8;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+  opacity: 0.6;
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.category-card h3 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  transition: var(--transition);
+}
+
+.category-card:hover h3 {
+  transform: scale(1.05);
+  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Promo Banner */
+.promo-banner {
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin: 48px 24px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.promo-content {
+  max-width: 600px;
+  padding: 0 24px;
+}
+
+.promo-content h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.promo-content p {
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+  opacity: 0.9;
+}
+
+.promo-content .btn {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.promo-content .btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Value Props */
+.value-props {
+  text-align: center;
+}
+
+.value-card {
+  padding: 32px;
+  background: white;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius);
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.value-icon {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 16px;
+}
+
+.value-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+
+.value-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 32px 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonial-stars {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+.testimonial-author h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+
+.testimonial-author span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+  .category-grid, .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .category-card {
+    height: 300px;
+  }
+  
+  .promo-content h2 {
+    font-size: 2rem;
+  }
+  
+  .promo-banner {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-grid, .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
