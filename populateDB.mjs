@@ -4,7 +4,7 @@ import { products } from './src/data/dummyData.js';
 async function populate() {
   console.log('Inserting products...');
   for (let p of products) {
-    const { id, ...dataToInsert } = p;
+    const { ...dataToInsert } = p;
     // ensure price is numeric
     dataToInsert.price = Number(dataToInsert.price);
     

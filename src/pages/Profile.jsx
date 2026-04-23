@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { insforge } from '../lib/insforge';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Profile.css';
 
 const Profile = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +48,12 @@ const Profile = () => {
         </div>
       </div>
 
+      {location.state?.message && (
+        <div className="alert alert-success mt-4 mb-0" style={{backgroundColor: '#d4edda', color: '#155724', padding: '1rem', borderRadius: '4px'}}>
+          {location.state.message}
+        </div>
+      )}
+
       <div className="orders-section mt-5">
         <h2>Order History</h2>
         {loading ? (
@@ -64,9 +71,14 @@ const Profile = () => {
                   </div>
                   <div className="text-end">
                     <strong className="d-block mb-1">Total: ₹{order.total}</strong>
-                    <span className={`badge bg-\${order.status === 'pending' ? 'warning text-dark' : 'success'}`}>
+                    <span className={`badge bg-\${order.status === 'pending' ? 'warning text-dark' : 'success'}`} style={{marginRight: '8px'}}>
                       {order.status.toUpperCase()}
                     </span>
+                    {order.payment_status && (
+                      <span className={`badge bg-\${order.payment_status === 'pending' ? 'danger' : 'info'}`}>
+                        {order.payment_status.toUpperCase()}
+                      </span>
+                    )}
                   </div>
                 </div>
                 

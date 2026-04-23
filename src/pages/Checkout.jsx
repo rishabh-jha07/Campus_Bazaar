@@ -42,7 +42,8 @@ const Checkout = () => {
         .from('orders')
         .insert([{
           user_id: user.id,
-          status: 'completed', // auto-complete for dummy demo
+          status: 'pending',
+          payment_status: 'pending',
           total: total
         }])
         .select()
@@ -66,11 +67,10 @@ const Checkout = () => {
       if (itemsError) throw itemsError;
       
       clearCart();
-      alert('Order placed successfully! Thank you for shopping with Campus Bazaar.');
-      navigate('/');
+      navigate(`/payment/${orderData.id}`);
     } catch (err) {
       console.error('Checkout error:', err);
-      alert('Failed to place order. Please try again.');
+      alert(`Failed to place order: ${err?.message || err?.details || 'Please try again.'}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -137,27 +137,16 @@ const Checkout = () => {
               <div className="payment-options">
                 <div className="payment-option selected">
                   <label>
-                    <input type="radio" name="payment" defaultChecked />
-                    <span>Credit Card</span>
+                    <input type="radio" name="payment" value="paypal" defaultChecked />
+                    <span>PayPal</span>
                   </label>
                 </div>
               </div>
               
-              <div className="card-details">
-                <div className="form-group">
-                  <input type="text" placeholder="Card Number" required />
-                </div>
-                <div className="form-row">
-                  <div className="form-group half">
-                    <input type="text" placeholder="Expiration Date (MM/YY)" required />
-                  </div>
-                  <div className="form-group half">
-                    <input type="text" placeholder="Security Code" required />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <input type="text" placeholder="Name on Card" required />
-                </div>
+              <div className="payment-notice" style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f0f8ff', borderRadius: '8px', border: '1px solid #cce5ff' }}>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: '#004085' }}>
+                  After clicking "Complete Order", you will be redirected to our secure payment portal to finalize your transaction via PayPal.
+                </p>
               </div>
             </div>
 
@@ -166,7 +155,7 @@ const Checkout = () => {
               className="btn btn-primary btn-full submit-order-btn"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Processing...' : 'Pay Now'}
+              {isSubmitting ? 'Processing...' : 'Complete Order'}
             </button>
             
           </form>
